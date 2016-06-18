@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Chufang */
 
-$this->title = 'Create Chufang';
+$this->title = '添加处方';
 $this->params['breadcrumbs'][] = ['label' => 'Chufangs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

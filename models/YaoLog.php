@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "yao_log".
@@ -15,7 +17,7 @@ use Yii;
  * @property string $created_at
  * @property string $updated_at
  */
-class YaoLog extends \yii\db\ActiveRecord
+class YaoLog extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -23,6 +25,38 @@ class YaoLog extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'yao_log';
+    }
+    
+    public function behaviors()
+    {
+    	return [
+    			'timestamp' => [
+    					'class'      => TimestampBehavior::className(),
+    					'attributes' => [
+    							ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+    							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+    					],
+    			],
+    	];
+    }
+    
+    public function afterSave($insert, $changedAttributes)
+    {
+    	parent::afterSave($insert, $changedAttributes);
+    	if($insert){
+    		$model = Yao::findOne(['yao'=>$this->yao]);
+    		$model->stock = $model->stock + $this->weight;
+    		$model->save();
+    	}
+    	return TRUE;
+    }
+    
+    public function afterFind()
+    {
+    	parent::afterFind();
+    	$this->created_at = date('Y-m-d H:i:s', $this->created_at);
+    	$this->updated_at = date('Y-m-d H:i:s', $this->updated_at);
+    	return TRUE;
     }
 
     /**
@@ -45,10 +79,10 @@ class YaoLog extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'yao' => '药材',
-            'weight' => '药品变化量',
+            'weight' => '药品变化量(克)',
             'chufang_id' => 'Chufang ID',
             'content' => '说明',
-            'created_at' => 'Created At',
+            'created_at' => '日期',
             'updated_at' => 'Updated At',
         ];
     }

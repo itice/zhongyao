@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\ChufangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Chufangs';
+$this->title = '处方管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="chufang-index">
@@ -16,14 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Chufang', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加处方', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'name',
             'mobile',
             'address',

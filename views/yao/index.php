@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\YaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Yaos';
+$this->title = '药材库存';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yao-index">
@@ -16,19 +16,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Yao', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加药材', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'yao',
             'price',
             'stock',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            //['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 </div>

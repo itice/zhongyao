@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\YaoLogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Yao Logs';
+$this->title = '药材进出';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yao-log-index">
@@ -16,20 +16,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Yao Log', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'yao',
-            'weight',
-            'chufang_id',
+        	['attribute'=>'weight', 'value'=>function($model){
+       			$html = '';
+       			if($model->weight > 0) $html .= "<span style='color:green'>+</span>";
+       			$html .= $model->weight;
+       			return $html;
+       		},'format'=>'raw'],
             'content',
-
-            ['class' => 'yii\grid\ActionColumn'],
+        		
+        	'created_at',
         ],
     ]); ?>
 </div>

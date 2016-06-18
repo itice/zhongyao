@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Yao */
 
-$this->title = 'Create Yao';
-$this->params['breadcrumbs'][] = ['label' => 'Yaos', 'url' => ['index']];
+$this->title = '添加药材';
+$this->params['breadcrumbs'][] = ['label' => '药材库存', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yao-create">

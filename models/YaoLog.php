@@ -7,25 +7,23 @@ use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
 /**
- * This is the model class for table "{{%chufang}}".
+ * This is the model class for table "{{%yao_log}}".
  *
  * @property string $id
- * @property string $name
- * @property string $mobile
- * @property string $address
+ * @property string $weight
+ * @property string $chufang_id
  * @property string $content
- * @property string $sign_at
  * @property string $created_at
  * @property string $updated_at
  */
-class Chufang extends ActiveRecord
+class YaoLog extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return '{{%chufang}}';
+        return '{{%yao_log}}';
     }
     
     public function behaviors()
@@ -47,11 +45,9 @@ class Chufang extends ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'string'],
-            [['sign_at', 'created_at', 'updated_at'], 'integer'],
-            [['name'], 'string', 'max' => 20],
-            [['mobile'], 'string', 'max' => 11],
-            [['address'], 'string', 'max' => 255],
+            [['weight'], 'number'],
+            [['chufang_id', 'created_at', 'updated_at'], 'integer'],
+            [['content'], 'string', 'max' => 255],
         ];
     }
 
@@ -62,11 +58,9 @@ class Chufang extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => '姓名',
-            'mobile' => '手机',
-            'address' => '地址',
-            'content' => '病情',
-            'sign_at' => '登记日期',
+            'weight' => '药品变化量',
+            'chufang_id' => 'Chufang ID',
+            'content' => '说明',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

@@ -48,7 +48,8 @@ $config = [
         */
     ],
     'params' => $params,
-	'timeZone'=>'Asia/Chongqing',
+	'timeZone' => 'Asia/Chongqing',
+	'language' => 'zh-CN',
 ];
 
 if (YII_ENV_DEV) {

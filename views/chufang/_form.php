@@ -20,7 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'sign_at')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model,'sign_at')->widget('yii\jui\DatePicker',['dateFormat' => 'yyyy-MM-dd', 'options'=>['class'=>'form-control','style'=>'width:150px;'] ])?>
 
     <div class="form-group">

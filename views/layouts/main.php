@@ -38,7 +38,8 @@ AppAsset::register($this);
         'items' => [
             ['label' => '首页', 'url' => ['/site/index']],
         	['label' => '处方管理', 'url' => ['/chufang/index']],
-            ['label' => '药材管理', 'url' => ['/yao/index']],
+            ['label' => '药材库存', 'url' => ['/yao/index']],
+        	['label' => '药材进出', 'url' => ['/yao-log/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

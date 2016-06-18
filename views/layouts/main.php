@@ -39,7 +39,6 @@ AppAsset::register($this);
             ['label' => '首页', 'url' => ['/site/index']],
         	['label' => '处方管理', 'url' => ['/chufang/index']],
             ['label' => '药材管理', 'url' => ['/yao/index']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (

@@ -65,6 +65,7 @@ class ChufangController extends Controller
     {
         $model = new Chufang();
 
+        $model->sign_at = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

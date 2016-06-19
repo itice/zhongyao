@@ -21,6 +21,25 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model,'sign_at')->widget('yii\jui\DatePicker',['dateFormat' => 'yyyy-MM-dd', 'options'=>['class'=>'form-control','style'=>'width:150px;'] ])?>
+    
+    <div class="grid-view">
+		<table>
+		  <thead>
+		  <tr>
+		    <th>药材</th>
+		    <th>用量(克)</th>
+		    <th></th>
+		  </tr>
+		  </thead>
+		  <tbody class="source">
+		    <tr>
+		    <td><input type="text" class="ui-autocomplete-city form-control" name="ChufangYao[yaos][]"></td>
+		    <td><input type="text" class="form-control" name="ChufangYao[weights][]"></td>
+		    <td><a class="delsource iso" href="javascript:;">删除</a></td>
+		  </tr>
+		    </tbody>
+		</table>
+	</div>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
@@ -29,3 +48,20 @@ use yii\widgets\ActiveForm;
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php 
+$this->registerCss("
+	.delsource{width:30px;display:block}
+    .grid-view table{width:785px; font:normal 12px '微软雅黑';}
+    .grid-view thead th{padding:10px; font:normal 12px '微软雅黑'; color:#333; background:#f5f5f5; }
+    .grid-view tbody td{text-align:center; padding:10px;}
+		");
+		
+$this->registerJs("
+	$('body').on('click', '.delsource', function(){
+        if($('.source').children().length > 1)
+            $(this).parent().parent().remove();
+    });
+		
+		");
+?>

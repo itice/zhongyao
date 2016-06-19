@@ -40,6 +40,13 @@ class Chufang extends ActiveRecord
     			],
     	];
     }
+    
+    public function beforeSave($insert)
+    {
+    	parent::beforeSave($insert);
+    	$this->sign_at = strtotime($this->sign_at);
+    	return TRUE;
+    }
 
     /**
      * @inheritdoc
@@ -47,8 +54,9 @@ class Chufang extends ActiveRecord
     public function rules()
     {
         return [
+        	[['name'], 'required'],
             [['content'], 'string'],
-            [['sign_at', 'created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at'], 'integer'],
             [['name'], 'string', 'max' => 20],
             [['mobile'], 'string', 'max' => 11],
             [['address'], 'string', 'max' => 255],

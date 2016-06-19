@@ -65,6 +65,7 @@ class YaoLog extends ActiveRecord
     public function rules()
     {
         return [
+        	[['yao', 'weight'], 'required'],
             [['weight'], 'number'],
             [['chufang_id', 'created_at', 'updated_at'], 'integer'],
             [['yao', 'content'], 'string', 'max' => 255],

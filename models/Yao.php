@@ -45,6 +45,7 @@ class Yao extends ActiveRecord
     public function rules()
     {
         return [
+        	[['yao'], 'required'],
             [['price', 'stock'], 'number'],
             [['created_at', 'updated_at'], 'integer'],
             [['yao'], 'string', 'max' => 255],

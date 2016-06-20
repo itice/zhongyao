@@ -65,7 +65,6 @@ class ChufangController extends Controller
     public function actionCreate()
     {
         $model = new ChufangForm();
-
         $model->sign_at_str = date('Y-m-d');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

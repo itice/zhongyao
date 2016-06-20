@@ -38,7 +38,15 @@ class ChufangForm extends Chufang
     public function rules()
     {
         $rules = parent::rules();
+        $rules[] = [['yaos','weights'], 'required'];
         $rules[] = ['sign_at_str', 'string'];
         return $rules;
+    }
+    
+    public function attributeLabels()
+    {
+        $attrs = parent::attributeLabels();
+        $attrs['sign_at_str'] = '登记日期';
+        return $attrs;
     }
 }

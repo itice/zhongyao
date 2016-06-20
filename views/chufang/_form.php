@@ -12,6 +12,8 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+<div class="row">
+    <div class="col-xs-5">
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
@@ -19,30 +21,32 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model,'sign_at')->widget('yii\jui\DatePicker',['dateFormat' => 'yyyy-MM-dd', 'options'=>['class'=>'form-control','style'=>'width:150px;'] ])?>
+    <?= $form->field($model,'sign_at_str')->widget('yii\jui\DatePicker',['dateFormat' => 'yyyy-MM-dd', 'options'=>['class'=>'form-control','style'=>'width:150px;'] ])?>
+	</div>
     
+    <div class="col-xs-5">
     <div class="grid-view">
 		<table>
 		  <thead>
 		  <tr>
 		    <th>药材</th>
 		    <th>用量(克)</th>
-		    <th><?= Html::a(Yii::t('base', '添加'), 'javascript:;', ['class' => 'btn-sm btn-success addsource']) ?></th>
+		    <th><?= Html::a('添加', 'javascript:;', ['class' => 'btn-sm btn-success addsource']) ?></th>
 		  </tr>
 		  </thead>
 		  <tbody class="source">
 		  <?php for($i=1; $i<=10; $i++):?>
 		    <tr>
-		      <td><input type="text" class="ui-autocomplete-city form-control" name="ChufangYao[yaos][]"></td>
-		      <td><input type="text" class="form-control" name="ChufangYao[weights][]"></td>
+		      <td><input type="text" class="ui-autocomplete-yao form-control" name="ChufangForm[yaos][]"></td>
+		      <td><input type="text" class="form-control" name="ChufangForm[weights][]"></td>
 		      <td><a class="delsource iso" href="javascript:;">删除</a></td>
 		    </tr>
 		  <?php endfor;?>
 		   </tbody>
 		</table>
 	</div>
-
+	</div>
+</div>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
@@ -66,8 +70,9 @@ $this->registerJs("
     });
     
     var source_html = '<tr>\
-    <td><input type=\"text\" class=\"ui-autocomplete-city form-control\" name=\"ChufangYao[yaos][]\" value=\"\"></td>\
-    <td><input type=\"text\" class=\"form-control\" name=\"ChufangYao[weights][]\" value=\"\"></td>\
+    <td><input type=\"text\" class=\"ui-autocomplete-yao form-control\" name=\"ChufangForm[yaos][]\" value=\"\"></td>\
+    <td><input type=\"text\" class=\"form-control\" name=\"ChufangForm[weights][]\" value=\"\"></td>\
+    <td><a class=\"delsource iso\" href=\"javascript:;\">删除</a></td>\
     </tr>';
     $('.addsource').click(function(){
         $('.source').append(source_html);
@@ -75,3 +80,5 @@ $this->registerJs("
 		
 		");
 ?>
+
+<?=$this->render('//layouts/__autocomplete_yao');?>

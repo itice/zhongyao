@@ -5,6 +5,8 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
+use app\helpers\Pinyin;
+use yii\helpers\Json;
 
 /**
  * This is the model class for table "{{%yao}}".
@@ -29,14 +31,37 @@ class Yao extends ActiveRecord
     public function behaviors()
     {
     	return [
-    			'timestamp' => [
-    					'class'      => TimestampBehavior::className(),
-    					'attributes' => [
-    							ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-    							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-    					],
+    		'timestamp' => [
+    			'class'      => TimestampBehavior::className(),
+    			'attributes' => [
+    				ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+    				ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
     			],
+    		],
     	];
+    }
+    
+    public static function autocomplete()
+    {
+        $cache = Yii::$app->cache;
+        $key = 'yao_autocomplete';
+        $data = $cache->get($key);
+    
+        if($data !== FALSE)
+            return Json::encode($data);
+    
+            $models = Yao::find()->all();
+            foreach ($models as $model){
+                $pinyin = Pinyin::getShortPinyin($model->yao);
+                $v['name'] = $model->yao;
+                $v['value'] = $model->yao;
+                $v['label'] = implode(',', [$model->yao, $pinyin]);
+                $data[] = $v;
+            }
+    
+            $cache->set($key, $data, 5);
+    
+            return Json::encode($data);
     }
 
     /**

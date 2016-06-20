@@ -26,12 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'mobile',
             'address',
             'content:ntext',
-            ['attribute'=>'处方', 'value'=>function($model){
-                $html = '';
-                foreach ($model->chufangYao as $yao)
-                    $html .= $yao->yao . $yao->weight . ' ';
-                return $html;
-            }],
             ['attribute'=>'sign_at', 'value'=>function($model){
                 return date('Y-m-d', $model->sign_at);
             }],

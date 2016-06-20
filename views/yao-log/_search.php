@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\daterange\DateRangePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\YaoLogSearch */
@@ -15,25 +16,24 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'yao') ?>
+    <?= $form->field($model, 'yao')->textInput(['class'=>'ui-autocomplete-yao form-control']) ?>
 
-    <?= $form->field($model, 'weight') ?>
-
-    <?= $form->field($model, 'chufang_id') ?>
-
-    <?= $form->field($model, 'content') ?>
-
-    <?php // echo $form->field($model, 'created_at') ?>
-
-    <?php // echo $form->field($model, 'updated_at') ?>
+	<?=DateRangePicker::widget([
+		'model'=>$model,
+		'attribute'=>'date_range',
+		'pluginOptions'=>[
+		    'timePickerIncrement'=>7,
+			'format'=>'Y-m-d'
+		]
+	])?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('重置', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
 </div>
+

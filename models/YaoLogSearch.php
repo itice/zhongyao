@@ -12,6 +12,7 @@ use app\models\YaoLog;
  */
 class YaoLogSearch extends YaoLog
 {
+    public $date_range;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class YaoLogSearch extends YaoLog
     {
         return [
             [['id', 'chufang_id', 'created_at', 'updated_at'], 'integer'],
-            [['yao', 'content'], 'safe'],
+            [['yao', 'date_range'], 'safe'],
             [['weight'], 'number'],
         ];
     }
@@ -47,7 +48,7 @@ class YaoLogSearch extends YaoLog
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query,
+            'query' => $query
         ]);
 
         $this->load($params);
@@ -69,7 +70,21 @@ class YaoLogSearch extends YaoLog
 
         $query->andFilterWhere(['like', 'yao', $this->yao])
             ->andFilterWhere(['like', 'content', $this->content]);
+        
+        if($this->date_range){
+            list($start,$end) = explode(' - ', $this->date_range);
+            $start_at = strtotime($start . ' 00:00:00');
+            $end_at = strtotime($end . ' 23:59:59');
+            $query->filterWhere(['between', 'created_at', $start_at, $end_at]);
+        }
 
         return $dataProvider;
+    }
+    
+    public function attributeLabels()
+    {
+        $attrs = parent::attributeLabels();
+        $attrs['date_range'] = '日期';
+        return $attrs;
     }
 }

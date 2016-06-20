@@ -9,25 +9,28 @@ use yii\grid\GridView;
 
 $this->title = '药材进出';
 $this->params['breadcrumbs'][] = $this->title;
+
+$query = clone $dataProvider->query;
+$inc = $query->andWhere(['>','weight',0])->sum('weight') ?: '0.00';
+$query = clone $dataProvider->query;
+$dec = $query->andWhere(['<','weight',0])->sum('weight') ?: '0.00';
+$dec = number_format(abs($dec), 2);
 ?>
 <div class="yao-log-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
+    
+    <?=$this->render('_search', ['model' => $searchModel]); ?>
+	<?="收入:<span style='color:green'>$inc</span>克 支出:<span style='color:red'>$dec</span>克"?>
     <p>
         <?= Html::a('添加', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             'yao',
         	['attribute'=>'weight', 'value'=>function($model){
-       			$html = '';
-       			if($model->weight > 0) $html .= "<span style='color:green'>+</span>";
-       			$html .= $model->weight;
-       			return $html;
+       			return $model->weight > 0 ? "<span style='color:green'>+{$model->weight}</span>" : "<span style='color:red'>{$model->weight}</span>";
        		},'format'=>'raw'],
             'content',
         		

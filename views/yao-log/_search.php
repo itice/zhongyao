@@ -18,15 +18,17 @@ use kartik\daterange\DateRangePicker;
 
 
     <?= $form->field($model, 'yao')->textInput(['class'=>'ui-autocomplete-yao form-control']) ?>
-
-	<?=DateRangePicker::widget([
+	<?=$this->render('//layouts/__autocomplete_yao');?>
+	
+	<div class="form-group field-yaologsearch-date_range">
+    <label class="control-label" for="yaologsearch-date_range">日期</label>
+    <?=DateRangePicker::widget([
 		'model'=>$model,
-		'attribute'=>'date_range',
-		'pluginOptions'=>[
-		    'timePickerIncrement'=>7,
-			'format'=>'Y-m-d'
-		]
+		'attribute'=>'date_range'
 	])?>
+    <div class="help-block"></div>
+    </div>
+	
 
     <div class="form-group">
         <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>

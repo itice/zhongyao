@@ -23,6 +23,7 @@ class ChufangYao extends \yii\db\ActiveRecord
         return '{{%chufang_yao}}';
     }
     
+    /*
     public function afterSave($insert, $changedAttributes)
     {
     	parent::afterSave($insert, $changedAttributes);
@@ -36,6 +37,7 @@ class ChufangYao extends \yii\db\ActiveRecord
     	}
     	return TRUE;
     }
+    */
     
     public function getChufang()
     {

@@ -14,28 +14,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
             'mobile',
             'address',
             'content:ntext',
-            'sign_at',
-            'created_at',
-            'updated_at',
+            ['label'=>'登记日期','value'=>date('Y-m-d', $model->sign_at)],
+            ['label'=>'处方','value'=>$model->chufangYaoText],
         ],
     ]) ?>
 

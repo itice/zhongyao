@@ -46,6 +46,14 @@ class Chufang extends ActiveRecord
         return $this->hasMany(ChufangYao::className(), ['chufang_id'=>'id']);
     }
     
+    public function getChufangYaoText()
+    {
+        $html = '';
+        foreach ($this->chufangYao as $yao)
+            $html .= $yao->yao . $yao->weight . ' ';
+        return $html;
+    }
+    
     /**
      * @inheritdoc
      */

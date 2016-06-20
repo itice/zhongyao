@@ -28,16 +28,18 @@ use yii\widgets\ActiveForm;
 		  <tr>
 		    <th>药材</th>
 		    <th>用量(克)</th>
-		    <th></th>
+		    <th><?= Html::a(Yii::t('base', '添加'), 'javascript:;', ['class' => 'btn-sm btn-success addsource']) ?></th>
 		  </tr>
 		  </thead>
 		  <tbody class="source">
+		  <?php for($i=1; $i<=10; $i++):?>
 		    <tr>
-		    <td><input type="text" class="ui-autocomplete-city form-control" name="ChufangYao[yaos][]"></td>
-		    <td><input type="text" class="form-control" name="ChufangYao[weights][]"></td>
-		    <td><a class="delsource iso" href="javascript:;">删除</a></td>
-		  </tr>
-		    </tbody>
+		      <td><input type="text" class="ui-autocomplete-city form-control" name="ChufangYao[yaos][]"></td>
+		      <td><input type="text" class="form-control" name="ChufangYao[weights][]"></td>
+		      <td><a class="delsource iso" href="javascript:;">删除</a></td>
+		    </tr>
+		  <?php endfor;?>
+		   </tbody>
 		</table>
 	</div>
 
@@ -61,6 +63,14 @@ $this->registerJs("
 	$('body').on('click', '.delsource', function(){
         if($('.source').children().length > 1)
             $(this).parent().parent().remove();
+    });
+    
+    var source_html = '<tr>\
+    <td><input type=\"text\" class=\"ui-autocomplete-city form-control\" name=\"ChufangYao[yaos][]\" value=\"\"></td>\
+    <td><input type=\"text\" class=\"form-control\" name=\"ChufangYao[weights][]\" value=\"\"></td>\
+    </tr>';
+    $('.addsource').click(function(){
+        $('.source').append(source_html);
     });
 		
 		");

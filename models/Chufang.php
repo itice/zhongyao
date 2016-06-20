@@ -31,23 +31,21 @@ class Chufang extends ActiveRecord
     public function behaviors()
     {
     	return [
-    			'timestamp' => [
-    					'class'      => TimestampBehavior::className(),
-    					'attributes' => [
-    							ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
-    							ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
-    					],
-    			],
-    	];
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+    				ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+    				ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at']
+                ]
+            ]
+        ];
     }
     
-    public function beforeSave($insert)
+    public function getChufangYao()
     {
-    	parent::beforeSave($insert);
-    	$this->sign_at = strtotime($this->sign_at);
-    	return TRUE;
+        return $this->hasMany(ChufangYao::className(), ['chufang_id'=>'id']);
     }
-
+    
     /**
      * @inheritdoc
      */

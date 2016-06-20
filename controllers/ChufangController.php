@@ -8,6 +8,7 @@ use app\models\ChufangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\ChufangForm;
 
 /**
  * ChufangController implements the CRUD actions for Chufang model.
@@ -63,9 +64,9 @@ class ChufangController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Chufang();
+        $model = new ChufangForm();
 
-        $model->sign_at = time();
+        $model->sign_at_str = date('Y-m-d');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

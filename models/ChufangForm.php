@@ -20,6 +20,7 @@ class ChufangForm extends Chufang
         foreach ($this->yaos as $k => $v){
             if(!empty($this->yaos[$k])){
                 $model = new ChufangYao();
+                $model->chufang_id = $this->id;
                 $model->yao = $this->yaos[$k];
                 $model->weight = $this->weights[$k];
                 $model->save(FALSE);

@@ -85,7 +85,7 @@ class Yao extends ActiveRecord
         return [
             'id' => 'ID',
             'yao' => '药名',
-            'price' => '单价(元/克)',
+            'price' => '单价(元/千克)',
             'stock' => '库存(克)',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

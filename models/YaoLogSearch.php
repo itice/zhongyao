@@ -61,21 +61,14 @@ class YaoLogSearch extends YaoLog
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
-            'weight' => $this->weight,
-            'chufang_id' => $this->chufang_id,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'yao' => $this->yao,
         ]);
-
-        $query->andFilterWhere(['like', 'yao', $this->yao])
-            ->andFilterWhere(['like', 'content', $this->content]);
         
         if($this->date_range){
             list($start,$end) = explode(' - ', $this->date_range);
             $start_at = strtotime($start . ' 00:00:00');
             $end_at = strtotime($end . ' 23:59:59');
-            $query->filterWhere(['between', 'created_at', $start_at, $end_at]);
+            $query->andFilterWhere(['between', 'created_at', $start_at, $end_at]);
         }
 
         return $dataProvider;

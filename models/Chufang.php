@@ -62,7 +62,7 @@ class Chufang extends ActiveRecord
         return [
         	[['name'], 'required'],
             [['content'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
+            [['created_at', 'updated_at', 'num'], 'integer'],
             [['name'], 'string', 'max' => 20],
             [['mobile'], 'string', 'max' => 11],
             [['address'], 'string', 'max' => 255],
@@ -81,6 +81,7 @@ class Chufang extends ActiveRecord
             'address' => '地址',
             'content' => '病情',
             'sign_at' => '登记日期',
+        	'num' => '付数',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];

@@ -30,7 +30,7 @@ class ChufangYao extends \yii\db\ActiveRecord
     	if($insert){
     		$model = new YaoLog();
     		$model->yao = $this->yao;
-    		$model->weight = -$this->weight;
+    		$model->weight = -$this->weight * $this->chufang->num;
     		$model->chufang_id = $this->chufang_id;
     		$model->content = $this->chufang->name . date('Y-m-d', $this->chufang->sign_at) . '处方用药';
     		$model->save();

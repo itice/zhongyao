@@ -6,34 +6,20 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Yao */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Yaos', 'url' => ['index']];
+$this->title = $model->yao;
+$this->params['breadcrumbs'][] = ['label' => '药材管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yao-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'yao',
             'price',
             'stock',
-            'created_at',
-            'updated_at',
         ],
     ]) ?>
 

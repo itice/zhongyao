@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\YaoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = '药材库存';
+$this->title = '药材管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yao-index">

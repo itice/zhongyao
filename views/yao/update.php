@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Yao */
 
 $this->title = '修改药材: ' . $model->yao;
-$this->params['breadcrumbs'][] = ['label' => '药材库存', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '药材管理', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->yao, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '修改';
 ?>

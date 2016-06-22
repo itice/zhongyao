@@ -81,9 +81,9 @@ class ChufangController extends Controller
      * @param string $id
      * @return mixed
      */
-/*     public function actionUpdate($id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($id);
+        $model = ChufangForm::findOne($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -92,7 +92,7 @@ class ChufangController extends Controller
                 'model' => $model,
             ]);
         }
-    } */
+    }
 
     /**
      * Deletes an existing Chufang model.
@@ -100,12 +100,12 @@ class ChufangController extends Controller
      * @param string $id
      * @return mixed
      */
-/*     public function actionDelete($id)
+    public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    } */
+    }
 
     /**
      * Finds the Chufang model based on its primary key value.

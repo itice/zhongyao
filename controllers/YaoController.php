@@ -92,6 +92,16 @@ class YaoController extends Controller
             ]);
         }
     }
+    
+    public function actionUpdateStore()
+    {
+        $models = Yao::find()->all();
+        foreach ($models as $model){
+            $model->stock = $model->trueStock;
+            $model->save();
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
 
     /**
      * Deletes an existing Yao model.

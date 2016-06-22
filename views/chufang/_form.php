@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use app\models\ChufangYao;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Chufang */
@@ -38,13 +39,16 @@ use yii\widgets\ActiveForm;
 		  </tr>
 		  </thead>
 		  <tbody class="source">
-		  <?php for($i=1; $i<=10; $i++):?>
-		    <tr>
-		      <td><input type="text" class="ui-autocomplete-yao form-control" name="ChufangForm[yaos][]"></td>
-		      <td><input type="text" class="form-control" name="ChufangForm[weights][]"></td>
-		      <td><a class="delsource iso" href="javascript:;">删除</a></td>
-		    </tr>
-		  <?php endfor;?>
+  <?php
+  $chufangYao = $model->chufangYao ?: [new ChufangYao()];
+  foreach ($chufangYao as $yao_model):
+  ?>
+  <tr>
+    <td><?=Html::textInput('ChufangForm[citys][]', $yao_model->yao,['class'=>'ui-autocomplete-yao form-control'])?></td>
+    <td><?=Html::textInput('ChufangForm[weights][]', $yao_model->weight,['class'=>'form-control'])?></td>
+    <td><?=Html::a('删除', 'javascript:;', ['class'=>'delsource iso'])?></td>
+  </tr>
+  <?php endforeach;?>
 		   </tbody>
 		</table>
 	</div>

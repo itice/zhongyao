@@ -41,6 +41,14 @@ class Chufang extends ActiveRecord
         ];
     }
     
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        ChufangYao::deleteAll(['chufang_id'=>$this->id]);
+        YaoLog::deleteAll(['chufang_id'=>$this->id]);
+        return TRUE;
+    }
+    
     public function getChufangYao()
     {
         return $this->hasMany(ChufangYao::className(), ['chufang_id'=>'id']);

@@ -63,6 +63,17 @@ class Yao extends ActiveRecord
     
             return Json::encode($data);
     }
+    
+    /**
+     * 即时的库存
+     * @return number
+     */
+    public function getTrueStock()
+    {
+        $in = YaoLog::find()->where(['yao'=>$this->yao])->andWhere(['>','weight',0])->sum('weight');
+        $out = YaoLog::find()->where(['yao'=>$this->yao])->andWhere(['<','weight',0])->sum('weight');
+        return $in + $out;
+    }
 
     /**
      * @inheritdoc

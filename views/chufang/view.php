@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mobile',
             'address',
             'content:ntext',
+            'num',
             ['label'=>'登记日期','value'=>date('Y-m-d', $model->sign_at)],
             ['label'=>'处方','value'=>$model->chufangYaoText],
         ],

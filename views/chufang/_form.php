@@ -45,7 +45,7 @@ use app\models\ChufangYao;
   foreach ($chufangYao as $yao_model):
   ?>
   <tr>
-    <td><?=Html::textInput('ChufangForm[citys][]', $yao_model->yao,['class'=>'ui-autocomplete-yao form-control'])?></td>
+    <td><?=Html::textInput('ChufangForm[yaos][]', $yao_model->yao,['class'=>'ui-autocomplete-yao form-control'])?></td>
     <td><?=Html::textInput('ChufangForm[weights][]', $yao_model->weight,['class'=>'form-control'])?></td>
     <td><?=Html::a('删除', 'javascript:;', ['class'=>'delsource iso'])?></td>
   </tr>

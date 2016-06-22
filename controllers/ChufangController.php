@@ -66,6 +66,7 @@ class ChufangController extends Controller
     {
         $model = new ChufangForm();
         $model->sign_at_str = date('Y-m-d');
+        $model->num = 1;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

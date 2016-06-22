@@ -27,14 +27,15 @@ class ChufangYao extends \yii\db\ActiveRecord
     public function afterSave($insert, $changedAttributes)
     {
     	parent::afterSave($insert, $changedAttributes);
-    	if($insert){
-    		$model = new YaoLog();
-    		$model->yao = $this->yao;
-    		$model->weight = -$this->weight * $this->chufang->num;
-    		$model->chufang_id = $this->chufang_id;
-    		$model->content = $this->chufang->name . date('Y-m-d', $this->chufang->sign_at) . '处方用药';
-    		$model->save();
-    	}
+
+    	YaoLog::deleteAll(['yao'=>$this->yao,'chufang_id'=>$this->chufang_id]);
+		$model = new YaoLog();
+		$model->yao = $this->yao;
+		$model->weight = -$this->weight * $this->chufang->num;
+		$model->chufang_id = $this->chufang_id;
+		$model->content = $this->chufang->name . date('Y-m-d', $this->chufang->sign_at) . '处方用药';
+		$model->save();
+    	
     	return TRUE;
     }
     

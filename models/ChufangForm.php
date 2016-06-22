@@ -17,6 +17,7 @@ class ChufangForm extends Chufang
     {
         parent::afterSave($insert, $changedAttributes);
         ChufangYao::deleteAll(['chufang_id'=>$this->id]);
+        YaoLog::deleteAll(['chufang_id'=>$this->id]);
         foreach ($this->yaos as $k => $v){
             if(!empty($this->yaos[$k])){
                 $model = new ChufangYao();

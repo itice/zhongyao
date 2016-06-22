@@ -40,7 +40,8 @@ use app\models\ChufangYao;
 		  </thead>
 		  <tbody class="source">
   <?php
-  $chufangYao = $model->chufangYao ?: [new ChufangYao()];
+  for($i=1;$i<=10;$i++) $newyaos[] = new ChufangYao();
+  $chufangYao = $model->chufangYao ?: $newyaos;
   foreach ($chufangYao as $yao_model):
   ?>
   <tr>
